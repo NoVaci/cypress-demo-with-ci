@@ -1,0 +1,11 @@
+screenshots
+videos
+fixtures
+cypress/integration/hackathon
+cypress/integration/examples
+IMS_test
+.vscode
+seleniumhub
+isbn*
+.idea
+node_modules
