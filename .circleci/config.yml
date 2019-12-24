@@ -7,12 +7,19 @@ orbs:
   # import Cypress orb by specifying an exact version x.y.z
   # or the latest version 1.x.x using "@1" syntax
   cypress: cypress-io/cypress@1
+executors:
+  base10-circle:
+    docker:
+      - image: 'cypress/base:10'
+    environment:
+      CYPRESS_RECORD_KEY: 'eb7af749-3940-456e-875f-723af261aef6'
 workflows:
   build:
     jobs:
       # "cypress" is the name of the imported orb
       # "run" is the name of the job defined in Cypress orb
       - cypress/run:
+          executor: base10-circle
           yarn: true
           record: true
           parallel: true
