@@ -1,7 +1,7 @@
 {
   "baseUrl": "https://hrmdn-staging.kms-technology.com",
   "watchForFileChanges": false,
-  "integrationFolder": "cypress/integration/demo",
+  "integrationFolder": "demo",
   "defaultCommandTimeout": 15000,
   "chromeWebSecurity": false,
   "ignoreTestFiles": [
