@@ -21,17 +21,17 @@ defaults: &defaults
               - v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
               - v2-deps-{{ .Branch }}-
               - v2-deps-
-          - run: npm ci
-          - save_cache:
-              key: v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
-              paths:
-                - ~/.npm
-                - ~/.cache
-          - persist_to_workspace:
-              root: ~/
-              paths:
-                - .cache
-                - app
+        - run: npm ci
+        - save_cache:
+            key: v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
+            paths:
+              - ~/.npm
+              - ~/.cache
+        - persist_to_workspace:
+            root: ~/
+            paths:
+              - .cache
+              - app
     test1:
       <<: *defaults
       steps:
