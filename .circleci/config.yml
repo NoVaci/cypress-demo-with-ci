@@ -2,28 +2,102 @@
 #
 # Check https://circleci.com/docs/2.0/language-javascript/ for more details
 #
-version: 2.1
-orbs:
-  # import Cypress orb by specifying an exact version x.y.z
-  # or the latest version 1.x.x using "@1" syntax
-  cypress: cypress-io/cypress@1
-executors:
-  base10-circle:
-    docker:
-      - image: 'cypress/base:10'
-    environment:
-      CYPRESS_RECORD_KEY: 'eb7af749-3940-456e-875f-723af261aef6'
-workflows:
-  build:
-    jobs:
-      # "cypress" is the name of the imported orb
-      # "run" is the name of the job defined in Cypress orb
-      - cypress/run:
-          executor: base10-circle
-          yarn: true
-          record: true
-          parallel: true
-          group: 'demo'
+version: 2
+
+defaults: &defaults
+  working_directory: ~/app
+  docker:
+    - image: cypress/base:10
+
+  jobs:
+    build:
+      <<: *defaults
+      steps:
+        - checkout
+        - run: pwd
+        - run: ls
+        - restore_cache:
+            keys:
+              - v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
+              - v2-deps-{{ .Branch }}-
+              - v2-deps-
+          - run: npm ci
+          - save_cache:
+              key: v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
+              paths:
+                - ~/.npm
+                - ~/.cache
+          - persist_to_workspace:
+              root: ~/
+              paths:
+                - .cache
+                - app
+    test1:
+      <<: *defaults
+      steps:
+        - attach_workspace:
+            at: ~/
+        - run: ls -la cypress
+        - run: ls -la demo
+        - run:
+            name: Running google test
+            command: $(npm bin)/cypress run --spec demo/google_test.js --reporter junit --reporter-options "mochaFile=results/my-test-output.xml"
+        - store_test_results:
+            path: results
+        - store_artifacts:
+            path: cypress/videos
+        - store_artifacts:
+            path: cypress/screenshots
+
+
+      test2:
+        <<: *defaults
+        steps:
+          - attach_workspace:
+              at: ~/
+          - run:
+              name: Running selenium demo test
+              command: $(npm bin)/cypress run --spec demo/seleniumeasy_test.js --reporter junit --reporter-options "mochaFile=results/my-test-output.xml"
+          - store_test_results:
+              path: results
+          - store_artifacts:
+              path: cypress/videos
+          - store_artifacts:
+              path: cypress/screenshots
+
+  workflows:
+    version: 2
+    build_and_test:
+      jobs:
+        - build
+        - test1:
+            requires:
+              - build
+        - test2:
+            requires:
+              - build
+#version: 2.1
+#orbs:
+#  # import Cypress orb by specifying an exact version x.y.z
+#  # or the latest version 1.x.x using "@1" syntax
+#  cypress: cypress-io/cypress@1
+#executors:
+#  base10-circle:
+#    docker:
+#      - image: 'cypress/base:10'
+#    environment:
+#      CYPRESS_RECORD_KEY: 'eb7af749-3940-456e-875f-723af261aef6'
+#workflows:
+#  build:
+#    jobs:
+#      # "cypress" is the name of the imported orb
+#      # "run" is the name of the job defined in Cypress orb
+#      - cypress/run:
+#          executor: base10-circle
+#          yarn: true
+#          record: true
+#          parallel: true
+#          group: 'demo'
 
 #jobs:
 #  build:
