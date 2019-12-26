@@ -41,7 +41,7 @@ defaults: &defaults
         - run: ls -la demo
         - run:
             name: Running google test
-            command: $(npm bin)/cypress run --spec demo/google_test.js --reporter junit --reporter-options "mochaFile=results/my-test-output.xml"
+            command: $(npm bin)/cypress run --parallel --spec demo/google_test.js --reporter junit --reporter-options "mochaFile=results/my-test-output.xml"
         - store_test_results:
             path: results
         - store_artifacts:
@@ -57,7 +57,7 @@ defaults: &defaults
               at: ~/
           - run:
               name: Running selenium demo test
-              command: $(npm bin)/cypress run --spec demo/seleniumeasy_test.js --reporter junit --reporter-options "mochaFile=results/my-test-output.xml"
+              command: $(npm bin)/cypress run --parallel --spec demo/seleniumeasy_test.js --reporter junit --reporter-options "mochaFile=results/my-test-output.xml"
           - store_test_results:
               path: results
           - store_artifacts:
