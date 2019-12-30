@@ -37,11 +37,9 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
-      - run: ls -la cypress
-      - run: ls -la demo
       - run:
           name: Running google test
-          command: '$(npm bin)/cypress run --parallel --spec demo/google_test.js --reporter junit --reporter-options "mochaFile=results/my-test-output.xml"
+          command: '$(npm bin)/cypress run --parallel --spec demo/selenium_test2.js --reporter junit --reporter-options "mochaFile=results/my-test-output.xml"
           --record --key eb7af749-3940-456e-875f-723af261aef6'
       - store_test_results:
           path: results
