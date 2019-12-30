@@ -57,7 +57,7 @@ jobs:
       - run:
           name: Running selenium demo test
           command: '$(npm bin)/cypress run --parallel --spec demo/seleniumeasy_test.js --reporter junit --reporter-options "mochaFile=results/my-test-output.xml"
-          ..--record --key eb7af749-3940-456e-875f-723af261aef6'
+          --record --key eb7af749-3940-456e-875f-723af261aef6'
       - store_test_results:
           path: results
       - store_artifacts:
