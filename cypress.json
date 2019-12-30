@@ -1,5 +1,4 @@
 {
-  "baseUrl": "https://hrmdn-staging.kms-technology.com",
   "watchForFileChanges": false,
   "integrationFolder": "demo",
   "defaultCommandTimeout": 15000,
