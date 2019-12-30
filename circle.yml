@@ -41,29 +41,29 @@ jobs:
       - run: ls -la demo
       - run:
           name: Running google test
-          command: $(npm bin)/cypress run --parallel --spec demo/google_test.js --reporter junit --reporter-options "mochaFile=results/my-test-output.xml"
+          command: '$(npm bin)/cypress run --parallel --spec demo/google_test.js --reporter junit --reporter-options "mochaFile=results/my-test-output.xml"
+          --record --key eb7af749-3940-456e-875f-723af261aef6'
       - store_test_results:
           path: results
       - store_artifacts:
           path: cypress/videos
       - store_artifacts:
           path: cypress/screenshots
-
-
-    test2:
-      <<: *defaults
-      steps:
-        - attach_workspace:
-            at: ~/
-        - run:
-            name: Running selenium demo test
-            command: $(npm bin)/cypress run --parallel --spec demo/seleniumeasy_test.js --reporter junit --reporter-options "mochaFile=results/my-test-output.xml"
-        - store_test_results:
-            path: results
-        - store_artifacts:
-            path: cypress/videos
-        - store_artifacts:
-            path: cypress/screenshots
+  test2:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Running selenium demo test
+          command: '$(npm bin)/cypress run --parallel --spec demo/seleniumeasy_test.js --reporter junit --reporter-options "mochaFile=results/my-test-output.xml"
+          ..--record --key eb7af749-3940-456e-875f-723af261aef6'
+      - store_test_results:
+          path: results
+      - store_artifacts:
+          path: cypress/videos
+      - store_artifacts:
+          path: cypress/screenshots
 
 workflows:
   version: 2
