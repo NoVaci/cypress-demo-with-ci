@@ -1,15 +1,45 @@
-it('Filter by task', () => {
-    cy.visit('https://www.seleniumeasy.com/test/table-search-filter-demo.html');
-    // type in 'in progres' then [enter]
-    cy.get('[id=task-table-filter]').type('in progress{enter}');
+describe('Cypress demo', () => {
+    before(() => {
+        cy.visit('http://testing.coe.com:30022');
+    });
 
-    // verify all lines contain filtered term
-    cy.get('[id=task-table]').find('tbody')
-        .children('tr').not('[style="display: none;"]')
-        .each((tr) => {
-            cy.wrap(tr).find('td').last()
-                .then((td) => {
-                    expect(td.text()).to.eq('in progress')
-                })
-    })
+    it('Pass ', () => {
+        cy.xpath('//*[contains(.,"Apple Juice")]')
+            .last()
+            .click();
+        cy.get('[class=product__info__price]')
+            .should('contain', '3.00');
+        cy.xpath('//button[contains(.,"Add to cart")]')
+            .click();
+
+        cy.get('[class=navbar__brand__cart__icon]')
+            .next('span')
+            .should('have.text', '1');
+
+        cy.get('.cart-label')
+            .click();
+        cy.get('.cart__line')
+            .should('have.length', 1);
+
+        cy.contains('Home')
+            .click();
+
+        cy.xpath('//*[contains(.,"Banana Juice")]')
+            .last()
+            .click();
+        cy.get('#id_quantity')
+            .clear()
+            .type('5');
+
+        cy.xpath('//button[contains(.,"Add to cart")]')
+            .click();
+        cy.get('.cart-label')
+            .click();
+        cy.get('[class=navbar__brand__cart__icon]')
+            .next('span')
+            .should('contain', '6');
+        cy.get('[class~=cart-item-price]');
+        cy.get('.cart__line')
+            .should('have.length', 2);
+    });
 });
