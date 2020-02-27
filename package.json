@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "ava",
     "cypress:open": "cypress open"
@@ -12,21 +13,27 @@
   "dependencies": {
     "ava": "^2.4.0",
     "chai": "^4.2.0",
+    "chromedriver": "^80.0.1",
     "cypress-plugin-snapshots": "^1.2.9",
-    "cypress-promise": "^1.0.2",
     "ffmpeg": "0.0.4",
+    "jest": "^25.1.0",
     "js-yaml": "^3.13.1",
-    "mermaid": "^8.4.4",
+    "keycloak-admin": "^1.13.0",
+    "mermaid": "^8.4.6",
+    "mocha": "^7.0.1",
     "request": "^2.88.0",
     "selenium-webdriver": "^4.0.0-alpha.5",
     "tap-xunit": "^2.4.1"
   },
   "devDependencies": {
-    "@applitools/eyes-cypress": "^3.9.2",
-    "cypress": "^3.8.0",
+    "@applitools/eyes-cypress": "^3.9.8",
+    "cypress": "^4.0.1",
+    "cypress-image-snapshot": "^3.1.1",
+    "cypress-promise": "^1.0.2",
     "cypress-xpath": "^1.4.0",
-    "eslint": "^6.7.2",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.19.1"
+    "eslint-plugin-import": "^2.20.1",
+    "toml": "^3.0.0"
   }
 }

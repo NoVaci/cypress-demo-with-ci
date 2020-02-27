@@ -16,6 +16,7 @@ jobs:
       - checkout
       - run: pwd
       - run: ls
+      - run: npm install
       - restore_cache:
           keys:
             - v2-deps-{{ .Branch }}-{{ checksum "package-lock.json" }}
