@@ -40,7 +40,7 @@ jobs:
           at: ~/
       - run:
           name: Running some features
-          command: '$(npm bin)/cypress run --spec demo/sample.js --reporter junit --reporter-options "mochaFile=results/test1.xml"
+          command: '$(npm bin)/cypress run --spec demo/cypress_ci_sample.js --reporter junit --reporter-options "mochaFile=results/test1.xml"
           --record --key eb7af749-3940-456e-875f-723af261aef6'
       - store_test_results:
           path: results
@@ -55,7 +55,7 @@ jobs:
           at: ~/
       - run:
           name: Running selenium
-          command: '$(npm bin)/cypress run --spec demo/seleniumeasy_test.js --reporter junit --reporter-options "mochaFile=results/test2.xml"
+          command: '$(npm bin)/cypress run --spec demo/cypress_ci_sample2.js --reporter junit --reporter-options "mochaFile=results/test2.xml"
           --record --key eb7af749-3940-456e-875f-723af261aef6'
       - store_test_results:
           path: results
