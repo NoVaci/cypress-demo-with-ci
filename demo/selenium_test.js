@@ -7,11 +7,11 @@ const chromePath = require('chromedriver').path;
 
 // const driver = chrome.Driver.createSession(new chrome.Options(),
 //     new chrome.ServiceBuilder(chromePath).build());
-const driver = new Builder().forBrowser('firefox').build();
+const driver = new Builder().forBrowser('chrome').build();
 async function example() {
         try {
                 await driver.get('http://testing.coe.com:30022');
-                const ele = await driver.findElement(By.xpath('(//*[contains(.,"Apple Juice")])[last()]'));
+                const ele = await driver.findElement(By.xpath('(//*[contains(.,"Coconut Juice")])[last()]'));
                 await ele.click();
 
                 // ===  wait
@@ -32,7 +32,7 @@ async function example() {
 
                 await driver.findElement(By.xpath('(//*[contains(., "Home")])[last()]'))
                     .click();
-                await driver.findElement(By.xpath('(//*[contains(., "Banana Juice")])[last()]'))
+                await driver.findElement(By.xpath('(//*[contains(., "Pineapple Juice")])[last()]'))
                     .click();
                 // ===  wait
                 const productQuantity = driver.wait(until.elementLocated(By.id('id_quantity')), 5000)
