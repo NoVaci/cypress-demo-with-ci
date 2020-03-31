@@ -54,7 +54,7 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          name: Running selenium
+          name: Running cypress
           command: '$(npm bin)/cypress run --spec demo/cypress_ci_sample2.js --reporter junit --reporter-options "mochaFile=results/test2.xml"
           --record --key eb7af749-3940-456e-875f-723af261aef6'
       - store_test_results:
