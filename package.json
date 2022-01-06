@@ -19,7 +19,7 @@
     "jest": "^25.1.0",
     "js-yaml": "^3.13.1",
     "keycloak-admin": "^1.13.0",
-    "mermaid": "^8.4.6",
+    "mermaid": "^8.13.8",
     "mocha": "^7.0.1",
     "request": "^2.88.0",
     "selenium-webdriver": "^4.0.0-alpha.5",
