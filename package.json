@@ -20,7 +20,7 @@
     "js-yaml": "^3.13.1",
     "keycloak-admin": "^1.13.0",
     "mermaid": "^8.4.6",
-    "mocha": "^7.0.1",
+    "mocha": "^10.2.0",
     "request": "^2.88.0",
     "selenium-webdriver": "^4.0.0-alpha.5",
     "tap-xunit": "^2.4.1"
